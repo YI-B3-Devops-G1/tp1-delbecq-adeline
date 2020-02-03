@@ -31,7 +31,6 @@ Vagrant.configure("2") do |config|
   # via 127.0.0.1 to disable public access
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 22, host: 2201, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 443, host: 4443, host_ip: "127.0.0.1"
 
   # Create a private network, which allows host-only access to the machine
@@ -67,6 +66,6 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  config.vm.provision "file", source: "index.html", destination: "/tmp/index.html"
   config.vm.provision "shell", path: "bootstrap.sh"
-  config.vm.provision "file", source: "index.html", destination: "/var/www/html/index.html"
 end
